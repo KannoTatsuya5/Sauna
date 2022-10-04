@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -13,7 +14,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        // 新しい順で一覧表示
+        $posts = Post::latest()->get();
+        //変数$postsをposts/index.blade.phpに渡す
+        return view('posts.index', compact('posts'));
     }
 
     /**
