@@ -78,9 +78,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        return view('posts.edit');
+    public function edit(Post $post)
+    {   
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -111,7 +111,7 @@ class PostController extends Controller
         $post->image_path = $filename;
         $post->content = $request->input('content');
         $post->save();
-        return redirect()->route('post.update')->with('message', '更新が完了しました');
+        return redirect()->route('post.update', $post)->with('message', '更新が完了しました');
     }
 
     /**
