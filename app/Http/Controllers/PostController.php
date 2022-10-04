@@ -111,7 +111,7 @@ class PostController extends Controller
         $post->image_path = $filename;
         $post->content = $request->input('content');
         $post->save();
-        return redirect()->route('post.store')->with('message', '更新が完了しました');
+        return redirect()->route('post.update')->with('message', '更新が完了しました');
     }
 
     /**
