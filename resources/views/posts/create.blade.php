@@ -30,7 +30,7 @@
             <textarea name="content" id="content" cols="30" rows="10" class="form-control">{{ old('content') }}</textarea>
         </div>
         <div align="center">
-            <button type="submit" class="btn btn-outline-primary mt-3 fs-5">編集</button>
+            <button type="submit" class="btn btn-outline-primary mt-3 fs-5">投稿</button>
         </div>
     </form>
 @endsection
