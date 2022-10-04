@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 投稿された情報の一覧表示.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return view('posts.index');
     }
 
     /**
