@@ -25,5 +25,9 @@ Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('po
 Route::get('/post', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
 // 投稿した後の画面遷移
 Route::post('/', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store');
+// 編集画面に遷移
+Route::get('/edit', [\App\Http\Controllers\PostController::class, 'edit'])->name('post.edit');
+// 編集した後の画面遷移
+Route::put('/', [\App\Http\Controllers\PostController::class, 'update'])->name('post.update');
 
 // Route::get('/home', [App\Http\Controllers\PostController::class, 'index'])->name('home');
