@@ -38,6 +38,14 @@ class PostController extends Controller
      */
     public function store(Request $request, Post $post)
     {
+        $file = $request->file('image_path');
+        if(!empty($file)) {
+            $filename = $file->getClientOriginalName();
+            $file->move('./upload/', $filename);
+        } else {
+            $filename = "";
+        }
+
         $request->validate([
             'nickname' => 'required | min:1 | max: 255',
             'sauna_name' => 'required | min:1 | max:255',
@@ -47,7 +55,7 @@ class PostController extends Controller
         $post = new Post();
         $post->nickname = $request->input('nickname');
         $post->sauna_name = $request->input('sauna_name');
-        $post->image_path = $request->input('image_path');
+        $post->image_path = $filename;
         $post->content = $request->input('content');
         $post->save();
         return redirect()->route('post.store')->with('message', '投稿が完了しました');
@@ -72,7 +80,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('posts.edit');
     }
 
     /**
@@ -82,9 +90,28 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $file = $request->file('image_path');
+        if(!empty($file)) {
+            $filename = $file->getClientOriginalName();
+            $file->move('./upload/', $filename);
+        } else {
+            $filename = "";
+        }
+
+        $request->validate([
+            'nickname' => 'required | min:1 | max: 255',
+            'sauna_name' => 'required | min:1 | max:255',
+            'content' => 'required | min:1 | max: 355',
+        ]);
+
+        $post->nickname = $request->input('nickname');
+        $post->sauna_name = $request->input('sauna_name');
+        $post->image_path = $filename;
+        $post->content = $request->input('content');
+        $post->save();
+        return redirect()->route('post.store')->with('message', '更新が完了しました');
     }
 
     /**
