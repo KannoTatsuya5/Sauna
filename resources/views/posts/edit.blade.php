@@ -20,14 +20,14 @@
             <br>
             <br>
             <label for="image_path">施設の画像:</label>
-            <input type="file" name="image_path" id="image_path" class="form-control" name="image_path" value="{{ old('image_path')}}">
+            <input type="file" name="image_path" id="image_path" class="form-control" name="image_path">
             <br>
             @error('content')
                 <span style="color: red">口コミを入力してください</span>
             @enderror
             <br>
             <label for="content">口コミ:</label>
-            <textarea name="content" id="content" cols="30" rows="10" class="form-control">value="{{ old('content')}}"</textarea>
+            <textarea name="content" id="content" cols="30" rows="10" class="form-control">{{ old('content')}}</textarea>
         </div>
         <div align="center">
             <button type="submit" class="btn btn-outline-primary mt-3 fs-5">編集</button>
