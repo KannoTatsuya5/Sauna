@@ -16,7 +16,7 @@
     
                     <div>
                         <a href="#" class="btn btn-outline-primary me-2">コメントをする</a>
-                        <a href="#" class="btn btn-outline-primary me-2">編集</a>
+                        <a href="{{ route('post.edit', $post)}}" class="btn btn-outline-primary me-2">編集</a>
                         <a href="#" class="btn btn-outline-danger">削除</a>
                     </div>
                 </div>
