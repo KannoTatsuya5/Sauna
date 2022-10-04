@@ -19,6 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// 一覧表示
 Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('post.index');
+// 投稿画面に遷移
+Route::get('/post', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
+// 投稿した後の画面遷移
+Route::post('/', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store');
 
 // Route::get('/home', [App\Http\Controllers\PostController::class, 'index'])->name('home');
