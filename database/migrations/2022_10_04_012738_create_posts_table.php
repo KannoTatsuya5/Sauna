@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->string('nickname')->comment('投稿者のニックネーム');
+            $table->string('sauna_name')->comment('サウナ施設の名前');
+            $table->string('image_path')->comment('サウナ施設等の画像');
+            $table->string('content')->comment('サウナの内容');
             $table->timestamps();
         });
     }
