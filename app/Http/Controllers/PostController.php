@@ -27,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -36,9 +36,21 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'nickname' => 'required | min:1 | max: 255',
+            'sauna_name' => 'required | min:1 | max:255',
+            'content' => 'required | min:1 | max: 355',
+        ]);
+
+        $post = new Post();
+        $post->nickname = $request->input('nickname');
+        $post->sauna_name = $request->input('sauna_name');
+        $post->image_path = $request->input('image_path');
+        $post->content = $request->input('content');
+        $post->save();
+        return redirect()->route('post.store')->with('message', '投稿が完了しました');
     }
 
     /**
