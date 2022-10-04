@@ -20,3 +20,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('post.index');
+
+// Route::get('/home', [App\Http\Controllers\PostController::class, 'index'])->name('home');
