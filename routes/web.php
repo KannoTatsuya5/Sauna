@@ -34,4 +34,5 @@ Route::get('/posts/edit/{post}', [\App\Http\Controllers\PostController::class, '
 Route::patch('/posts/{post}', [\App\Http\Controllers\PostController::class, 'update'])->name('post.update');
 //削除した後の画面遷移
 Route::delete('/posts/{post}', [\App\Http\Controllers\PostController::class, 'destroy'])->name('post.destroy');
-// Route::get('/home', [App\Http\Controllers\PostController::class, 'index'])->name('home');
+//ユーザーの詳細
+Route::get('/user/detail/', [\App\Http\Controllers\UserController::class, 'detail'])->name('user.detail');
