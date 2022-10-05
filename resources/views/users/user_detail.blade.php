@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
-        <h2>{{ $user_name }}</h2>
+    <div class="ms-5">
+        <h3>{{ $user->name }}</h3>
+
     </div>
 @endsection
