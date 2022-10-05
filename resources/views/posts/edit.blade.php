@@ -23,7 +23,7 @@
             <br>
             <br>
             <label for="image_path">施設の画像:</label>
-            <input type="file" name="image_path" id="image_path" class="form-control" name="image_path">
+            <input type="file" name="image_path" id="image_path" class="form-control" name="image_path" >
             <br>
             @error('content')
                 <span style="color: red">口コミを入力してください</span>
