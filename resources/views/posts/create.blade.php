@@ -4,13 +4,7 @@
     <form action="{{ route('post.store') }}" enctype="multipart/form-data" method="post">
         @csrf
         <div class="container">
-            @error('nickname')
-                <span style="color: red">ニックネームを入力してください</span>
-            @enderror
-            <br>
-            <label for="nickname">ニックネーム:</label>
-            <input type="text" id="nickname" class="form-control" name="nickname" value="{{ old('nickname') }}">
-            <br>
+            <h5>投稿者: {{ Auth::user()->name }}</h5>
             @error('sauna_name')
                 <span style="color: red">施設の名前を入力してください</span>
             @enderror
