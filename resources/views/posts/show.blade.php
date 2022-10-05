@@ -3,7 +3,7 @@
 @section('content')
     <div class="border">
         <div class="m-4">
-            <h5>投稿者: {{ $post->nickname }}</h5>
+            <h5>投稿者: {{ Auth::user()->name }}</h5>
             <h5>施設の名前: {{ $post->sauna_name }}</h5>
             <p>口コミ: <br>{{ $post->content }}</p>
             @if ($post->image_path)
