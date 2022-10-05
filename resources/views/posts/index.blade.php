@@ -14,13 +14,13 @@
                         <div class="m-2"><img src="upload/{{ $post->image_path }}" width="300"></div>
                     @endif
 
-                    <div>
-                        <a href="#" class="btn btn-outline-primary ms-5">コメントをする</a>
+                    <div style="display:inline-flex">
+                        <a href="{{ route('post.show', $post) }}" class="btn btn-outline-primary ms-4">コメントをする</a>
                         <a href="{{ route('post.edit', $post) }}" class="btn btn-outline-primary ms-3">編集</a>
                         <form action="{{ route('post.destroy', $post)}}" method="post">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-outline-danger mt-2 ms-5">削除</button>
+                            <button type="submit" class="btn btn-outline-danger ms-3">削除</button>
                         </form>
                     </div>
                 </div>
