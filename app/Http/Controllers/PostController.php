@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -14,8 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        // 新しい順で一覧表示
-        $posts = Post::latest()->get();
+        // 新しい順で一覧表示(user情報を渡している)
+        $posts = Post::with('user')->latest()->get();
+
         //変数$postsをposts/index.blade.phpに渡す
         return view('posts.index', compact('posts'));
     }
@@ -47,13 +50,12 @@ class PostController extends Controller
         }
 
         $request->validate([
-            'nickname' => 'required | min:1 | max: 255',
             'sauna_name' => 'required | min:1 | max:255',
             'content' => 'required | min:1 | max: 355',
         ]);
 
         $post = new Post();
-        $post->nickname = $request->input('nickname');
+        $post->user_id = Auth::id();
         $post->sauna_name = $request->input('sauna_name');
         $post->image_path = $filename;
         $post->content = $request->input('content');
@@ -101,12 +103,10 @@ class PostController extends Controller
         }
 
         $request->validate([
-            'nickname' => 'required | min:1 | max: 255',
             'sauna_name' => 'required | min:1 | max:255',
             'content' => 'required | min:1 | max: 355',
         ]);
 
-        $post->nickname = $request->input('nickname');
         $post->sauna_name = $request->input('sauna_name');
         $post->image_path = $filename;
         $post->content = $request->input('content');
