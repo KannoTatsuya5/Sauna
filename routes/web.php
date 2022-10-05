@@ -22,6 +22,8 @@ Auth::routes();
 
 // 一覧表示
 Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index'])->name('post.index');
+//詳細画面表示
+Route::get('/posts/show/{post}', [\App\Http\Controllers\PostController::class, 'show'])->name('post.show');
 // 投稿画面に遷移
 Route::get('/posts/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
 // 投稿した後の画面遷移
