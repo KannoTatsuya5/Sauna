@@ -29,6 +29,6 @@ Route::post('/posts', [\App\Http\Controllers\PostController::class, 'store'])->n
 // 編集画面に遷移
 Route::get('/posts/edit/{post}', [\App\Http\Controllers\PostController::class, 'edit'])->name('post.edit');
 // 編集した後の画面遷移
-Route::patch('/posts', [\App\Http\Controllers\PostController::class, 'update'])->name('post.update');
+Route::patch('/posts/{post}', [\App\Http\Controllers\PostController::class, 'update'])->name('post.update');
 
 // Route::get('/home', [App\Http\Controllers\PostController::class, 'index'])->name('home');
