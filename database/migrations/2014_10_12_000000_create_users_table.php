@@ -19,6 +19,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('sauna_history')->nullable();
+            $table->string('home_sauna')->nullable();
+            $table->string('like_sauna')->nullable();
+            $table->string('profile')->nullable();
+            $table->string('link')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
