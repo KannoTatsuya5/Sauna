@@ -58,7 +58,7 @@ class PostController extends Controller
         $post->image_path = $filename;
         $post->content = $request->input('content');
         $post->save();
-        return redirect()->route('post.store')->with('message', '投稿が完了しました');
+        return redirect()->route('post.store')->with('message', '投稿が完了しました。');
     }
 
     /**
@@ -111,7 +111,7 @@ class PostController extends Controller
         $post->image_path = $filename;
         $post->content = $request->input('content');
         $post->save();
-        return redirect()->route('post.index', $post)->with('message', '更新が完了しました');
+        return redirect()->route('post.index', $post)->with('message', '更新が完了しました。');
     }
 
     /**
@@ -120,8 +120,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('post.index', $post)->with('message', '投稿を削除しました。');
     }
 }
