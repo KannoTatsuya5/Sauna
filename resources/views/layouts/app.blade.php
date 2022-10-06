@@ -20,7 +20,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/posts') }}">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -76,5 +76,8 @@
             @yield('content')
         </main>
     </div>
+    <footer class="d-flex justify-content-center align-items-center bg-light fixed-bottom" style="height: 60px;"> 
+        <p class="text-muted small mb-0">&copy; サウナ研究会 All rights reserved.</span>
+    </footer>
 </body>
 </html>
