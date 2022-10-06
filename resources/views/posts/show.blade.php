@@ -12,12 +12,14 @@
 
             <div style="display:inline-flex">
                 <a href="{{ route('post.show', $post) }}" class="btn btn-outline-primary ms-4">コメントをする</a>
+                @if ($user_id === $post->user_id)
                 <a href="{{ route('post.edit', $post) }}" class="btn btn-outline-primary ms-3">編集</a>
                 <form action="{{ route('post.destroy', $post) }}" method="post">
                     @csrf
                     @method('delete')
                     <button type="submit" class="btn btn-outline-danger ms-3">削除</button>
                 </form>
+                @endif
             </div>
         </div>
     </div>
