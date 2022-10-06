@@ -7,6 +7,7 @@
         @foreach ($posts as $post)
             <div class="border">
                 <div class="m-4">
+                    <p>{{$post->updated_at}}</p>
                     <a href="{{route('user.detail', $post->user_id)}}" style="text-decoration: none; color: black"><h5>投稿者: {{ $post->user->name }}</h5></a>
                     <h5>施設の名前: {{ $post->sauna_name }}</h5>
                     <p>口コミ: <br>{{ $post->content }}</p>
