@@ -25,6 +25,7 @@
             <hr>
             @foreach ($posts as $post)
             <div class="mt-3" style="background-color: rgba(231, 230, 230, 0.859);border-radius: 30px; padding: 15px">
+                <p>{{$post->updated_at}}</p>
                 <strong class="fs-5">施設の名前: {{ $post->sauna_name }}</strong>
                 <p>口コミ: <br>{{ $post->content }}</p>
                 @if ($post->image_path)
