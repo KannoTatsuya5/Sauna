@@ -63,7 +63,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="home_sauna"
+                                <label for="like_sauna"
                                     class="col-md-4 col-form-label text-md-end">{{ __('好きなサウナ') }}</label>
 
                                 <div class="col-md-6">
@@ -77,7 +77,7 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('プロフィール') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="profile" type="text" class="form-control" name="home_sauna"
+                                    <input id="profile" type="text" class="form-control" name="profile"
                                         value="{{ old('profile') }}" placeholder="あなたはどんなサウナー？">
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('リンク') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="link" type="text" class="form-control" name="home_sauna"
+                                    <input id="link" type="text" class="form-control" name="link"
                                         value="{{ old('link') }}" placeholder="みんなにシェアしたいもののリンクを貼ってね">
                                 </div>
                             </div>

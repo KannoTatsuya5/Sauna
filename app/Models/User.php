@@ -22,6 +22,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'sauna_history',
+        'home_sauna',
+        'like_sauna',
+        'profile',
+        'link',
     ];
 
     public function posts() 
