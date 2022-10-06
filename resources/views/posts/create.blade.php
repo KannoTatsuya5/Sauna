@@ -27,4 +27,9 @@
             <button type="submit" class="btn btn-outline-primary mt-3 fs-5">投稿</button>
         </div>
     </form>
+    <form action="{{ route('post.index')}}">
+        <div align="center">
+            <button type="submit" class="btn btn-outline-danger mt-3 fs-5">戻る</button>
+        </div>
+    </form>
 @endsection
