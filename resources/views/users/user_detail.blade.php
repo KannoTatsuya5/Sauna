@@ -10,15 +10,19 @@
                 <p>好きなサウナ: {{ $user->like_sauna }}</p>
                 <p>プロフィール: {{ $user->profile }}</p>
                 @if ($user->link)
-                    <p style="padding-bottom: 30px">リンク: <a style="text-decoration: none; color: black"
+                    <p>リンク: <a style="text-decoration: none; color: black"
                             href="{{ $user->link }}">{{ $user->link }}</a></p>
                 @else
-                    <p style="padding-bottom: 30px">リンク: リンクはありません</p>
-                @endif
-            </div>
+                    <p>リンク: リンクはありません</p>
+                    @endif
+                </div>
+                <div class="ms-5" style="padding-bottom: 30px">
+                    <button class="btn btn-outline-primary" onclick="window.history.back()">戻る</button>
+                </div>
         </div>
         <div>
-            <div class="fs-4" style="background-color: rgba(231, 230, 230, 0.859);border-radius: 30px ;padding: 15px">{{ $user->name }}さんの投稿一覧</div>
+            <div class="fs-4 mt-3" style="background-color: rgba(231, 230, 230, 0.859);border-radius: 30px ;padding: 15px">{{ $user->name }}さんの投稿一覧</div>
+            <hr>
             @foreach ($posts as $post)
             <div class="mt-3" style="background-color: rgba(231, 230, 230, 0.859);border-radius: 30px; padding: 15px">
                 <strong class="fs-5">施設の名前: {{ $post->sauna_name }}</strong>
