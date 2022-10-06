@@ -72,7 +72,8 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $posts = Post::with('user')->latest()->get();
-        return view('posts.show', compact('posts','post'));
+
+        return view('posts.show', compact('posts','post'))->with('user_id', Auth::id());
     }
 
     /**
