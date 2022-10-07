@@ -22,8 +22,10 @@ Auth::routes();
 
 // 一覧表示
 Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index'])->name('post.index');
-//詳細画面表示
+//詳細(コメント)画面表示
 Route::get('/posts/show/{post}', [\App\Http\Controllers\PostController::class, 'show'])->name('post.show');
+//コメントをした後の画面遷移
+Route::post('/posts/show/{post}', [\App\Http\Controllers\ReplyController::class, 'store'])->name('reply.store');
 // 投稿画面に遷移
 Route::get('/posts/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
 // 投稿した後の画面遷移
