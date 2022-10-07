@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Reply;
+use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class ReplyController extends Controller
 {
@@ -13,7 +16,7 @@ class ReplyController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -32,9 +35,18 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Post $post)
     {
-        //
+        $replies = new Reply();
+        $replies->user_id = Auth::id();
+        $replies->post_id = $post->id;
+        $replies->message = $request->input('message');
+        $replies->save();
+
+        return redirect()->route('reply.store')->with(compact('replies'))->with(compact('post'));
+        // return redirect()->route('reply.store', compact('post', 'replies'));
+        // return view('posts.show', compact('post', 'replies'));
+
     }
 
     /**
