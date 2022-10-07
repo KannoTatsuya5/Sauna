@@ -23,18 +23,18 @@ Auth::routes();
 // 一覧表示
 Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index'])->name('post.index');
 //詳細(コメント)画面表示
-Route::get('/posts/show/{post}', [\App\Http\Controllers\PostController::class, 'show'])->name('post.show');
+Route::get('/posts/show/{post}', [\App\Http\Controllers\PostController::class, 'show'])->name('post.show')->middleware('auth');;
 //コメントをした後の画面遷移
-Route::post('/posts/show/{post}', [\App\Http\Controllers\ReplyController::class, 'store'])->name('reply.store');
+Route::post('/posts/show/{post}', [\App\Http\Controllers\ReplyController::class, 'store'])->name('reply.store')->middleware('auth');;
 // 投稿画面に遷移
-Route::get('/posts/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
+Route::get('/posts/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create')->middleware('auth');;
 // 投稿した後の画面遷移
-Route::post('/posts', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store');
+Route::post('/posts', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store')->middleware('auth');;
 // 編集画面に遷移
-Route::get('/posts/edit/{post}', [\App\Http\Controllers\PostController::class, 'edit'])->name('post.edit');
+Route::get('/posts/edit/{post}', [\App\Http\Controllers\PostController::class, 'edit'])->name('post.edit')->middleware('auth');;
 // 編集した後の画面遷移
-Route::patch('/posts/{post}', [\App\Http\Controllers\PostController::class, 'update'])->name('post.update');
+Route::patch('/posts/{post}', [\App\Http\Controllers\PostController::class, 'update'])->name('post.update')->middleware('auth');;
 //削除した後の画面遷移
-Route::delete('/posts/{post}', [\App\Http\Controllers\PostController::class, 'destroy'])->name('post.destroy');
+Route::delete('/posts/{post}', [\App\Http\Controllers\PostController::class, 'destroy'])->name('post.destroy')->middleware('auth');;
 //ユーザーの詳細
 Route::get('/user/detail/{user}', [\App\Http\Controllers\UserController::class, 'detail'])->name('user.detail');
