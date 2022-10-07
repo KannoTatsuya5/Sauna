@@ -37,15 +37,15 @@ class ReplyController extends Controller
      */
     public function store(Request $request,Post $post)
     {
-        $replies = new Reply();
-        $replies->user_id = Auth::id();
-        $replies->post_id = $post->id;
-        $replies->message = $request->input('message');
-        $replies->save();
+        $reply = new Reply();
+        $reply->user_id = Auth::id();
+        $reply->post_id = $post->id;
+        $reply->message = $request->input('message');
+        $reply->save();
+    
 
-        return redirect()->route('reply.store')->with(compact('replies'))->with(compact('post'));
-        // return redirect()->route('reply.store', compact('post', 'replies'));
-        // return view('posts.show', compact('post', 'replies'));
+        return redirect()->route('post.show', compact('post', 'reply'));
+        // return redirect()->route('reply.store')->with(compact('replies'))->with(compact('post'));
 
     }
 
