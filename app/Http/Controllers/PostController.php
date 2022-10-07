@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Reply;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ReplyController;
 
 class PostController extends Controller
 {
@@ -72,8 +74,10 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $posts = Post::with('user')->latest()->get();
+        $replies = Reply::where('post_id', $post->id)
+                    ->get();
 
-        return view('posts.show', compact('posts','post'))->with('user_id', Auth::id());
+        return view('posts.show', compact('posts','post', 'replies'))->with('user_id', Auth::id());
     }
 
     /**
