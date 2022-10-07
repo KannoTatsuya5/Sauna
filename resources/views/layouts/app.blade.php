@@ -76,7 +76,7 @@
             @yield('content')
         </main>
     </div>
-    <footer class="d-flex justify-content-center align-items-center bg-light fixed-bottom" style="height: 60px;"> 
+    <footer class="d-flex justify-content-center align-items-center bg-light fixed-bottom" style="height: 60px; opacity: 0.8;"> 
         <p class="text-muted small mb-0">&copy; サウナ研究会 All rights reserved.</span>
     </footer>
 </body>
