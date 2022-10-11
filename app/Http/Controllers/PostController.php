@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Reply;
+use App\Models\Nice;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\ReplyController;
+
 
 class PostController extends Controller
 {
@@ -16,11 +17,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Post $post)
     {
         // 新しい順で一覧表示(user情報を渡している)
-        $posts = Post::with('user')->latest()->get();
-
+        $posts = Post::with('user')->with('nices')->latest()->get();
+        dump($posts);
         //変数$postsをposts/index.blade.phpに渡す
         return view('posts.index', compact('posts'));
     }
@@ -44,7 +45,7 @@ class PostController extends Controller
     public function store(Request $request, Post $post)
     {
         $file = $request->file('image_path');
-        if(!empty($file)) {
+        if (!empty($file)) {
             $filename = $file->getClientOriginalName();
             $file->move('./upload/', $filename);
         } else {
@@ -75,9 +76,9 @@ class PostController extends Controller
     {
         $posts = Post::with('user')->latest()->get();
         $replies = Reply::where('post_id', $post->id)
-                    ->get();
+            ->get();
 
-        return view('posts.show', compact('posts','post', 'replies'))->with('user_id', Auth::id());
+        return view('posts.show', compact('posts', 'post', 'replies'))->with('user_id', Auth::id());
     }
 
     /**
@@ -87,7 +88,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
-    {   
+    {
         return view('posts.edit', compact('post'));
     }
 
@@ -101,7 +102,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $file = $request->file('image_path');
-        if(!empty($file)) {
+        if (!empty($file)) {
             $filename = $file->getClientOriginalName();
             $file->move('./upload/', $filename);
         } else {
