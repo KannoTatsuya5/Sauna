@@ -13,7 +13,7 @@ class UserController extends Controller
         //idが、リクエストされた$userのidと一致するuserを取得
         $user = User::find($user->id); 
         //$userによる投稿を取得
-        $posts = Post::where('user_id', $user->id)->get(); 
+        $posts = Post::where('user_id', $user->id)->paginate(5); 
 
         return view('users.user_detail', compact('user', 'posts'));
     }
