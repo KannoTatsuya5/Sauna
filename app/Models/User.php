@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Post;
+use App\Models\Nice;
+use App\Models\Reply;
 
 class User extends Authenticatable
 {
@@ -37,6 +39,10 @@ class User extends Authenticatable
     public function replies() {
         return $this->hasMany(Reply::class);
     }
+
+    public function nices() {
+        return $this->hasMany(Nice::class);
+    } 
     /**
      * The attributes that should be hidden for serialization.
      *
