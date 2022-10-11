@@ -13,7 +13,7 @@ class NiceController extends Controller
         $nice->post_id = $post->id;
         $nice->user_id = Auth::id();
         $nice->save();
-        // dd($nice);
+        
         return back();
     }
 
@@ -21,6 +21,7 @@ class NiceController extends Controller
         $user = Auth::id();
         $nice = Nice::where('post_id', $post->id)->where('user_id', $user)->first();
         $nice->delete();
+        
         return back();
     }
 }
