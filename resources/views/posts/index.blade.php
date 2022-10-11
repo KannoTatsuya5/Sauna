@@ -11,8 +11,8 @@
         <form method="GET" action="{{ route('post.index') }}">
             <input type="search" class="w-100 h-auto" placeholder="行ってみたいサウナの口コミを探してみよう" name="search" value="@if (isset($search)) {{ $search }} @endif">
             <div align="center">
-                <button class="mt-3" type="submit" style="width: 10%">検索</button>
-                <button class="ms-3">
+                <button class="mt-3 w-25 btn btn-primary" type="submit">検索</button>
+                <button class="mt-3 ms-3 btn btn-light" style="border:1px solid #333">
                     <a href="{{ route('post.index') }}" class="text-black">
                         クリア
                     </a>
@@ -43,18 +43,18 @@
                             @foreach ($post->nices as $nice)
                                 @if ($nice->user_id == Auth::id())
                                     <!-- 「いいね」取消用ボタンを表示 -->
-                                    <a href="{{ route('unnice', $post) }}" class="btn btn-success ms-2">
-                                        ❤️
+                                    <a href="{{ route('unnice', $post) }}" class="btn btn-danger ms-2">
+                                        🤍
                                         <!-- 「いいね」の数を表示 -->
                                         <span class="badge">
                                             {{ $post->nices->count() }}
                                         </span>
                                     </a>
                                 @else
-                                    <a href="{{ route('nice', $post) }}" class="btn btn-primary ms-2">
+                                    <a href="{{ route('nice', $post) }}" class="btn btn-outline-primary ms-2">
                                         ❤️
                                         <!-- 「いいね」の数を表示 -->
-                                        <span class="badge">
+                                        <span class="badge text-black">
                                             {{ $post->nices->count() }}
                                         </span>
                                     </a>
@@ -62,10 +62,10 @@
                             @endforeach
                         @else
                             <!-- まだユーザーが「いいね」をしていなければ、「いいね」ボタンを表示 -->
-                            <a href="{{ route('nice', $post) }}" class="btn btn-primary ms-2">
+                            <a href="{{ route('nice', $post) }}" class="btn btn-outline-primary ms-2">
                                 ❤️
                                 <!-- 「いいね」の数を表示 -->
-                                <span class="badge">
+                                <span class="badge text-black">
                                     {{ $post->nices->count() }}
                                 </span>
                             </a>

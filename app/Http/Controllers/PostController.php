@@ -17,13 +17,40 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Post $post)
+    public function index(Post $post, Request $request)
     {
         // 新しい順で一覧表示(user情報を渡している)
         $posts = Post::with('user')->with('nices')->latest()->paginate(5);
 
+        $search = $request->input('search');
+
+        // クエリビルダ
+        $query = Post::query();
+
+       // もし検索フォームにキーワードが入力されたら
+        if ($search) {
+
+            // 全角スペースを半角に変換
+            $spaceConversion = mb_convert_kana($search, 's');
+
+            // 単語を半角スペースで区切り、配列にする（例："山田 翔" → ["山田", "翔"]）
+            $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
+
+
+            // 単語をループで回し、ユーザーネームと部分一致するものがあれば、$queryとして保持される
+                foreach($wordArraySearched as $value) {
+                    $query->where('sauna_name', 'like', '%'.$value.'%')->latest();
+                }
+                $posts = $query->paginate(5);
+
+        }
+
+
         //変数$postsをposts/index.blade.phpに渡す
-        return view('posts.index', compact('posts'));
+        return view('posts.index', compact('posts')) ->with([
+            'post' => $posts,
+            'search' => $search,
+        ]);
     }
 
     /**
