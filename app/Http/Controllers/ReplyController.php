@@ -44,7 +44,7 @@ class ReplyController extends Controller
         $reply = new Reply();
         $reply->user_id = Auth::id();
         $reply->post_id = $post->id;
-        $reply->message = $request->input('message');
+        $reply->message = $request->input('reply_message');
         $reply->save();
     
 

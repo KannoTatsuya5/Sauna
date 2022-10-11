@@ -20,7 +20,7 @@ class PostController extends Controller
     public function index(Post $post)
     {
         // 新しい順で一覧表示(user情報を渡している)
-        $posts = Post::with('user')->with('nices')->latest()->paginate(2);
+        $posts = Post::with('user')->with('nices')->latest()->paginate(5);
         dump($posts);
         //変数$postsをposts/index.blade.phpに渡す
         return view('posts.index', compact('posts'));
@@ -75,8 +75,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $posts = Post::with('user')->latest()->get();
-        $replies = Reply::where('post_id', $post->id)
-            ->get();
+        $replies = Reply::where('post_id', $post->id)->paginate(10);
 
         return view('posts.show', compact('posts', 'post', 'replies'))->with('user_id', Auth::id());
     }

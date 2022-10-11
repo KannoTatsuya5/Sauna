@@ -52,6 +52,9 @@
             @endforeach
             <div style="padding-bottom: 130px"></div>
             {{-- {{$replies->message}} --}}
+            <div  style="padding-bottom: 100px">
+                {!! $replies->links() !!}
+            </div>
         </div>
     </div>
 @endsection
