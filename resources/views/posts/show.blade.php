@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="border h-100">
-        <div class="m-4">
-            <form action="{{ route('post.index') }}">
-                <div>
-                    <button type="submit" class="btn btn-outline-danger">戻る</button>
-                </div>
-            </form>
+<div class="border w-75 mx-auto">
+        <form action="{{ route('post.index') }}">
+            <div class="w-25 text-cente">
+                <button type="submit" class="btn btn-outline-danger ms-5 mt-3 mb-3">戻る</button>
+            </div>
+        </form>
+        <div class="m-4 text-center ">
             </p>
             <a href="{{ route('user.detail', $post->user_id) }}" style="text-decoration: none; color: black">
                 <h5>投稿者: {{ $post->user->name }}</h5>
@@ -15,7 +15,7 @@
             <h5>施設の名前: {{ $post->sauna_name }}</h5>
             <p>口コミ: <br>{{ $post->content }}</p>
             @if ($post->image_path)
-                <div class="m-2"><img src="/upload/{{ $post->image_path }}" width="300"></div>
+                <div class="m-2"><img src="/upload/{{ $post->image_path }}" class="w-50"></div>
             @endif
 
             <div>
@@ -25,7 +25,7 @@
                         <span style="color: red">1文字以上1500文字以内で入力してください</span>
                     @enderror
                     <br>
-                    <textarea name="reply_message" value="{{ old('reply_message') }}" cols="48" rows="10"></textarea>
+                    <textarea name="reply_message" value="{{ old('reply_message') }}" class="w-50" rows="10"></textarea>
                     <br>
                     <button type="submit" class="btn btn-outline-success">コメント</button>
                 </form>
@@ -50,9 +50,8 @@
                 </div>
                 <hr>
             @endforeach
-            <div style="padding-bottom: 130px"></div>
             {{-- {{$replies->message}} --}}
-            <div  style="padding-bottom: 100px">
+            <div class="p-5">
                 {!! $replies->links() !!}
             </div>
         </div>
