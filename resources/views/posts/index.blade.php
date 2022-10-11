@@ -8,6 +8,17 @@
         </div>
         @endif
         <br>
+        <form method="GET" action="{{ route('post.index') }}">
+            <input type="search" class="w-100 h-auto" placeholder="行ってみたいサウナの口コミを探してみよう" name="search" value="@if (isset($search)) {{ $search }} @endif">
+            <div align="center">
+                <button class="mt-3" type="submit" style="width: 10%">検索</button>
+                <button class="ms-3">
+                    <a href="{{ route('post.index') }}" class="text-black">
+                        クリア
+                    </a>
+                </button>
+            </div>
+        </form>
         <a href="{{ route('post.create') }}" class="btn btn-outline-primary me-2 mb-3">投稿</a>
 
         @foreach ($posts as $post)
