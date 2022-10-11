@@ -3,7 +3,7 @@
 @section('content')
     <div class="border h-100">
         <div class="m-4">
-            <form action="{{ route('post.index')}}">
+            <form action="{{ route('post.index') }}">
                 <div>
                     <button type="submit" class="btn btn-outline-danger">戻る</button>
                 </div>
@@ -21,8 +21,11 @@
             <div>
                 <form action="{{ route('reply.store', $post) }}" method="post">
                     @csrf
-                    {{-- <input style="width: 150px" type="text" name="message" value="{{ old('message') }}"> --}}
-                    <textarea name="message" value="{{ old('message') }}" cols="48" rows="10"></textarea>
+                    @error('reply_message')
+                        <span style="color: red">1文字以上1500文字以内で入力してください</span>
+                    @enderror
+                    <br>
+                    <textarea name="reply_message" value="{{ old('reply_message') }}" cols="48" rows="10"></textarea>
                     <br>
                     <button type="submit" class="btn btn-outline-success">コメント</button>
                 </form>
@@ -40,7 +43,7 @@
         </div>
         <div>
             @foreach ($replies as $reply)
-            <hr>
+                <hr>
                 <div class="ms-4">
                     <h5>コメント：</h5>
                     <p>{{ $reply->created_at }}:{{ $reply->user->name }}<br>{{ $reply->message }}</p>

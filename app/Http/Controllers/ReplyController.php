@@ -37,6 +37,10 @@ class ReplyController extends Controller
      */
     public function store(Request $request,Post $post)
     {
+        $request->validate([
+            'reply_message' => 'required | min:1 | max:1500',
+        ]);
+
         $reply = new Reply();
         $reply->user_id = Auth::id();
         $reply->post_id = $post->id;
