@@ -24,10 +24,12 @@ class PostController extends Controller
 
         $search = $request->input('search');
 
+        $no_item_message = null;
+
         // クエリビルダ
         $query = Post::query();
 
-       // もし検索フォームにキーワードが入力されたら
+        // もし検索フォームにキーワードが入力されたら
         if ($search) {
 
             // 全角スペースを半角に変換
@@ -38,18 +40,22 @@ class PostController extends Controller
 
 
             // 単語をループで回し、ユーザーネームと部分一致するものがあれば、$queryとして保持される
-                foreach($wordArraySearched as $value) {
-                    $query->where('sauna_name', 'like', '%'.$value.'%')->latest();
-                }
-                $posts = $query->paginate(5);
+            foreach ($wordArraySearched as $value) {
+                $query->where('sauna_name', 'like', '%' . $value . '%')->latest();
+            }
+            $posts = $query->paginate(5);
 
+            if ($posts[0] == null) {
+                $no_item_message = "該当する施設の口コミがありません。他のキーワードで検索してみよう!";
+            }
         }
 
 
         //変数$postsをposts/index.blade.phpに渡す
-        return view('posts.index', compact('posts')) ->with([
+        return view('posts.index', compact('posts'))->with([
             'post' => $posts,
             'search' => $search,
+            'no_item_message' => $no_item_message,
         ]);
     }
 
