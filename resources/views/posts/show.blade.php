@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="border w-75 mx-auto">
+<div class="container text-center border w-75">
         <form action="{{ route('post.index') }}">
             <div class="w-25 text-cente">
                 <button type="submit" class="btn btn-outline-danger ms-5 mt-3 mb-3">戻る</button>
             </div>
         </form>
-        <div class="m-4 text-center ">
+        <div class="m-4">
             </p>
             <a href="{{ route('user.detail', $post->user_id) }}" style="text-decoration: none; color: black">
                 <h5>投稿者: {{ $post->user->name }}</h5>
@@ -45,8 +45,8 @@
             @foreach ($replies as $reply)
                 <hr>
                 <div class="ms-4">
-                    <h5>コメント：</h5>
-                    <p>{{ $reply->created_at }}:{{ $reply->user->name }}<br>{{ $reply->message }}</p>
+                    <h4>{{ $reply->created_at }}:{{ $reply->user->name }}さんからのコメント：</h4>
+                    <p>{{ $reply->message }}</p>
                 </div>
                 <hr>
             @endforeach
