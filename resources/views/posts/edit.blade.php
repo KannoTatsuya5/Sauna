@@ -30,9 +30,7 @@
             <button type="submit" class="btn btn-outline-primary mt-3 fs-5">更新</button>
         </div>
     </form>
-    <form action="{{ route('post.show', $post) }}">
-        <div align="center">
-            <button type="submit" class="btn btn-outline-danger mt-3 fs-5">戻る</button>
-        </div>
-    </form>
+    <div style="padding-bottom: 30px" align="center">
+        <button class="btn btn-outline-danger mt-3 fs-5" onclick="window.history.back()">戻る</button>
+    </div>
 @endsection

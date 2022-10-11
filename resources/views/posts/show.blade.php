@@ -9,7 +9,9 @@
                 </div>
             </form>
             </p>
-            <h5>投稿者: {{ $post->user->name }}</h5>
+            <a href="{{ route('user.detail', $post->user_id) }}" style="text-decoration: none; color: black">
+                <h5>投稿者: {{ $post->user->name }}</h5>
+            </a>
             <h5>施設の名前: {{ $post->sauna_name }}</h5>
             <p>口コミ: <br>{{ $post->content }}</p>
             @if ($post->image_path)
