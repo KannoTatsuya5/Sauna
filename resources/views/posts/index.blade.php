@@ -2,6 +2,12 @@
 
 @section('content')
     <div class="container">
+        @if (session('message'))
+        <div class="flash_message bg-success text-center text-white py-3 my-0">
+            {{session('message')}}
+        </div>
+        @endif
+        <br>
         <a href="{{ route('post.create') }}" class="btn btn-outline-primary me-2 mb-3">投稿</a>
 
         @foreach ($posts as $post)

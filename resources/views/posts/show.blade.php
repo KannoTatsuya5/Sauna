@@ -3,7 +3,11 @@
 @section('content')
     <div class="border h-100">
         <div class="m-4">
-            <p><button class="btn btn-outline-primary me-2" onclick="window.history.back()">戻る</button>{{ $post->updated_at }}
+            <form action="{{ route('post.index')}}">
+                <div>
+                    <button type="submit" class="btn btn-outline-danger">戻る</button>
+                </div>
+            </form>
             </p>
             <h5>投稿者: {{ $post->user->name }}</h5>
             <h5>施設の名前: {{ $post->sauna_name }}</h5>

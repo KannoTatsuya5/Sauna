@@ -17,7 +17,7 @@
             <br>
             <br>
             <label for="image_path">施設の画像:</label>
-            <input type="file" name="image_path" id="image_path" class="form-control" name="image_path" >
+            <input type="file" name="image_path" id="image_path" class="form-control" name="image_path">
             <br>
             @error('content')
                 <span style="color: red">口コミを入力してください</span>
@@ -28,6 +28,11 @@
         </div>
         <div align="center">
             <button type="submit" class="btn btn-outline-primary mt-3 fs-5">更新</button>
+        </div>
+    </form>
+    <form action="{{ route('post.show', $post) }}">
+        <div align="center">
+            <button type="submit" class="btn btn-outline-danger mt-3 fs-5">戻る</button>
         </div>
     </form>
 @endsection
