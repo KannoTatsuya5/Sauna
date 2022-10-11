@@ -64,5 +64,8 @@
             </div>
             <br>
         @endforeach
+        <div  style="padding-bottom: 100px">
+            {!! $posts->links() !!}
+        </div>
     </div>
 @endsection

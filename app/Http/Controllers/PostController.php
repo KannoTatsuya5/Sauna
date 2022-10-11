@@ -20,7 +20,7 @@ class PostController extends Controller
     public function index(Post $post)
     {
         // 新しい順で一覧表示(user情報を渡している)
-        $posts = Post::with('user')->with('nices')->latest()->get();
+        $posts = Post::with('user')->with('nices')->latest()->paginate(2);
         dump($posts);
         //変数$postsをposts/index.blade.phpに渡す
         return view('posts.index', compact('posts'));
