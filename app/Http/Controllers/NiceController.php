@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class NiceController extends Controller
 {
+    // いいねをしたときの処理
     public function nice(Post $post) {
         $nice = new Nice();
         $nice->post_id = $post->id;
@@ -17,6 +18,7 @@ class NiceController extends Controller
         return back();
     }
 
+    // いいねがされている投稿のいいねを取り消す処理
     public function unnice(Post $post) {
         $user = Auth::id();
         $nice = Nice::where('post_id', $post->id)->where('user_id', $user)->first();
