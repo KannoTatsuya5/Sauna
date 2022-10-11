@@ -54,7 +54,6 @@ class PostController extends Controller
 
         // 変数$postsをposts/index.blade.phpに渡す
         return view('posts.index', compact('posts'))->with([
-            'post' => $posts,
             'search' => $search,
             'no_item_message' => $no_item_message,
         ]);
