@@ -19,7 +19,11 @@
         }
 
         .image {
-            width: 100%;
+            background-size: cover;
+            padding: 200px;
+            background-position: bottom;
+            background-repeat: no-repeat;
+            background-image: url("upload/hokuo.png");
         }
 
         .backButton {
@@ -29,6 +33,7 @@
             background-color: green;
             font-size: 20px;
             color: white;
+            margin-top: 30px;
         }
 
         .backButton:hover {
@@ -41,11 +46,11 @@
 
 <body class="antialiased">
     <div class="container">
+        {{-- <div class="image">
+            <img src="upload/hokuo.png">
+        </div> --}}
         <div class="image">
-            <img src="upload/saunakapuseru.jpeg" style="background-color: white;" class="fluffy" />
-        </div>
-        <div>
-            <p class="message">予期せぬ処理が発生しました。<br>恐れ入りますが、もう一度やり直していただきますよう<br>お願い致します。</p>
+            <p class="message">予期せぬ処理が発生しました。<br>恐れ入りますが、もう一度やり直していただきますようお願い致します。</p>
         </div>
         <input class="backButton" type="button" onclick="location.href='./'" value="トップページに戻る">
 
