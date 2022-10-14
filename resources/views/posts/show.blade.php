@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container text-center border w-75">
+    <div class="container text-center border w-75">
         <form action="{{ route('post.index') }}">
             <div class="w-25 text-cente">
                 <button type="submit" class="btn btn-outline-danger ms-5 mt-3 mb-3">戻る</button>
@@ -28,7 +28,42 @@
                     <textarea name="reply_message" value="{{ old('reply_message') }}" class="w-50" rows="10"></textarea>
                     <br>
                     <button type="submit" class="btn btn-outline-success">コメント</button>
+                    <span>
+                        <!-- ユーザーが「いいね」をしていたら -->
+                        @if (!$post->nices->isEmpty())
+                            @foreach ($post->nices as $nice)
+                                @if ($nice->user_id == Auth::id())
+                                    <!-- 「いいね」取消用ボタンを表示 -->
+                                    <a href="{{ route('unnice', $post) }}" class="btn btn-danger ms-2">
+                                        🤍
+                                        <!-- 「いいね」の数を表示 -->
+                                        <span class="badge">
+                                            {{ $post->nices->count() }}
+                                        </span>
+                                    </a>
+                                @else
+                                    <a href="{{ route('nice', $post) }}" class="btn btn-outline-primary ms-2">
+                                        ❤️
+                                        <!-- 「いいね」の数を表示 -->
+                                        <span class="badge text-black">
+                                            {{ $post->nices->count() }}
+                                        </span>
+                                    </a>
+                                @endif
+                            @endforeach
+                        @else
+                            <!-- まだユーザーが「いいね」をしていなければ、「いいね」ボタンを表示 -->
+                            <a href="{{ route('nice', $post) }}" class="btn btn-outline-primary ms-2">
+                                ❤️
+                                <!-- 「いいね」の数を表示 -->
+                                <span class="badge text-black">
+                                    {{ $post->nices->count() }}
+                                </span>
+                            </a>
+                        @endif
+                    </span>
                 </form>
+                
                 @if (Auth::id() === $post->user_id)
                     <div style="display:inline-flex" class="mt-2">
                         <a href="{{ route('post.edit', $post) }}" class="btn btn-outline-primary">編集</a>

@@ -41,3 +41,5 @@ Route::get('/user/detail/{user}', [\App\Http\Controllers\UserController::class, 
 //いいねボタン
 Route::get('/posts/nice/{post}', [\App\Http\Controllers\NiceController::class, 'nice'])->name('nice')->middleware('auth');
 Route::get('/posts/unnice/{post}', [\App\Http\Controllers\NiceController::class, 'unnice'])->name('unnice')->middleware('auth');
+// いいね一覧
+Route::get('/posts/nices', [\App\Http\Controllers\NiceController::class, 'index'])->name('nice.index')->middleware('auth');

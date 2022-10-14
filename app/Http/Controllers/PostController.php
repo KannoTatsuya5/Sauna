@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Reply;
+use App\Models\Nice;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -15,10 +17,22 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Post $post, Request $request)
+    public function index(Post $post, Request $request, Nice $nice)
     {
-        // 新しい順で一覧表示(user情報を渡している)
+        // 新しい順で一覧表示(user情報,いいね情報を渡している)
         $posts = Post::with('user')->with('nices')->latest()->paginate(5);
+        $hasNice = [];
+        //配列のキーをpost_idにする
+        foreach ($posts as $post) {
+            foreach ($post->nices as $nice) {
+                if ($nice->user_id == Auth::id()) {
+                    $hasNice = Auth::id();
+                }
+            }
+        }
+        dump($hasNice);
+
+
 
         // 検索する単語を$searchに代入
         $search = $request->input('search');
@@ -53,7 +67,7 @@ class PostController extends Controller
 
 
         // 変数$postsをposts/index.blade.phpに渡す
-        return view('posts.index', compact('posts'))->with([
+        return view('posts.index', compact('posts', 'hasNice'))->with([
             'search' => $search,
             'no_item_message' => $no_item_message,
         ]);
@@ -111,7 +125,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         // ユーザー情報をpostと結合
-        $posts = Post::with('user')->latest()->get();
+        $posts = Post::with('user')->with('nices')->latest()->get();
         // 投稿とコメントを紐づける
         $replies = Reply::where('post_id', $post->id)->paginate(10);
 

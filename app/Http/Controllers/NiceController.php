@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class NiceController extends Controller
 {
+    public function index() {
+        $posts = Post::with('user')->with('nices')->get();
+        dump($posts);
+
+        return view('nices.nice', compact('posts'));
+    }
+
+
     // いいねをしたときの処理
     public function nice(Post $post) {
         $nice = new Nice();
