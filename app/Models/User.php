@@ -40,9 +40,10 @@ class User extends Authenticatable
         return $this->hasMany(Reply::class);
     }
 
-    public function nices() {
-        return $this->hasMany(Nice::class);
-    } 
+    public function favorites()
+    {
+        return $this->belongsToMany(Post::class)->withTimestamps();
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

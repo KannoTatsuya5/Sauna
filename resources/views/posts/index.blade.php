@@ -45,60 +45,29 @@
                     <div style="display:inline-flex">
                         <a href="{{ route('post.show', $post) }}" class="btn btn-outline-primary ms-2">コメントをする</a>
                     </div>
-                    <span>
-                        <!-- ユーザーが「いいね」をしていたら -->
-                        @if (!$post->nices->isEmpty())
-                            {{-- @foreach ($post->nices as $nice)
-                                @if ($nice->user_id == Auth::id()) --}}
-                            {{-- ユーザーidが一致したとき --}}
-                            <!-- 「いいね」取消用ボタンを表示 -->
-                            {{-- <a href="{{ route('unnice', $post) }}" class="btn btn-danger ms-2">
-                                        🤍 --}}
-                            <!-- 「いいね」の数を表示 -->
-                            {{-- <span class="badge">
-                                            {{ $post->nices->count() }}
-                                        </span> --}}
-                            {{-- </a>
-                                @else --}}
-                            {{-- ユーザーidが一致しなかった時 --}}
-                            {{-- <a href="{{ route('nice', $post) }}" class="btn btn-outline-primary ms-2">
-                                        ❤️ --}}
-                            <!-- 「いいね」の数を表示 -->
-                            {{-- <span class="badge text-black">
-                                            {{ $post->nices->count() }}
-                                        </span>
-                                    </a>
-                                @endif
-                            @endforeach --}}
-                            @if ($hasNice)
-                                <a href="{{ route('unnice', $post) }}" class="btn btn-danger ms-2">
-                                    🤍
-                                    <!-- 「いいね」の数を表示 -->
-                                    <span class="badge">
-                                        {{ $post->nices->count() }}
-                                    </span>
-                                </a>
-                            @else
-                                {{-- ユーザーidが一致しなかった時 --}}
-                                <a href="{{ route('nice', $post) }}" class="btn btn-outline-primary ms-2">
-                                    ❤️
-                                    <!-- 「いいね」の数を表示 -->
-                                    <span class="badge text-black">
-                                        {{ $post->nices->count() }}
-                                    </span>
-                                </a>
-                            @endif
+                    <div class="row justify-content-center">
+                        @if ($post->users()->where('user_id', Auth::id())->exists())
+                            <div class="col-md-3">
+                                <form action="{{ route('unfavorites', $post) }}" method="POST">
+                                    @csrf
+                                    <input type="submit" value="🤍取り消し" class="btn btn-danger">
+                                </form>
+                                <div class="row justify-content-center">
+                                    <p>いいね数：{{ $post->users()->count() }}</p>
+                                </div>
+                            </div>
                         @else
-                                <!-- まだユーザーが「いいね」をしていなければ、「いいね」ボタンを表示 -->
-                                <a href="{{ route('nice', $post) }}" class="btn btn-outline-primary ms-2">
-                                    ❤️
-                                    <!-- 「いいね」の数を表示 -->
-                                    <span class="badge text-black">
-                                        {{ $post->nices->count() }}
-                                    </span>
-                                </a>
+                            <div class="col-md-3">
+                                <form action="{{ route('favorites', $post) }}" method="POST">
+                                    @csrf
+                                    <input type="submit" value="❤️いいね" class="btn btn-outline-primary">
+                                </form>
+                                <div class="row justify-content-center">
+                                    <p>いいね数：{{ $post->users()->count() }}</p>
+                                </div>
+                            </div>
                         @endif
-                    </span>
+                    </div>
                 </div>
             </div>
             <br>

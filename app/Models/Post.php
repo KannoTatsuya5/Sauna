@@ -15,7 +15,8 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function nices() {
-        return $this->hasMany(Nice::class);
-    } 
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
 }
