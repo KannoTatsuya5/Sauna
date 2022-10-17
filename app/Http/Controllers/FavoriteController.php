@@ -15,7 +15,9 @@ class FavoriteController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::with('user')->get();
+        dump($posts);
+        return view('nices.nice', compact('posts'));
     }
 
     /**

@@ -67,9 +67,9 @@
                                 </div>
                             </li>
                         @endguest
-                        {{-- @if(Auth::id())
-                            <a href="{{ route('nice.index') }}" class="nav-link">いいね一覧</a>
-                        @endif --}}
+                        @if(Auth::id())
+                            <a href="{{ route('favorite.index') }}" class="nav-link">いいね一覧</a>
+                        @endif
                     </ul>
                 </div>
             </div>

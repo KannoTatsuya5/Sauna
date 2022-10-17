@@ -19,18 +19,8 @@ class PostController extends Controller
      */
     public function index(Post $post, Request $request, Nice $nice)
     {
-        // 新しい順で一覧表示(user情報,いいね情報を渡している)
+        // 新しい順で一覧表示(user情報を渡している)
         $posts = Post::with('user')->latest()->paginate(5);
-        // $hasNice = [];
-        // //配列のキーをpost_idにする
-        // foreach ($posts as $post) {
-        //     foreach ($post->nices as $nice) {
-        //         if ($nice->user_id == Auth::id()) {
-        //             $hasNice = Auth::id();
-        //         }
-        //     }
-        // }
-        // dump($hasNice);
 
 
 

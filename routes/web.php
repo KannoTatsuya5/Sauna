@@ -38,7 +38,8 @@ Route::patch('/posts/{post}', [\App\Http\Controllers\PostController::class, 'upd
 Route::delete('/posts/{post}', [\App\Http\Controllers\PostController::class, 'destroy'])->name('post.destroy')->middleware('auth');
 //ユーザーの詳細
 Route::get('/user/detail/{user}', [\App\Http\Controllers\UserController::class, 'detail'])->name('user.detail');
-
 //いいねしたときの処理
 Route::post('posts/favorites/{post}', [\App\Http\Controllers\FavoriteController::class, 'store'])->name('favorites')->middleware('auth');
 Route::post('posts/{post}/unfavorites', [\App\Http\Controllers\FavoriteController::class, 'destroy'])->name('unfavorites')->middleware('auth');
+//いいね一覧に遷移
+Route::get('posts/nice', [\App\Http\Controllers\FavoriteController::class, 'index'])->name('favorite.index');
